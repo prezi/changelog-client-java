@@ -1,0 +1,68 @@
+apply plugin: 'java'
+
+version = '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile 'org.slf4j:slf4j-api:1.7.7',
+			'org.apache.httpcomponents:httpclient:4.3.4',
+			'org.json:json:20140107',
+			'commons-codec:commons-codec:1.4'  // For HTTP Basic auth
+}
+
+apply plugin: 'maven-publish'
+project.group = "com.prezi.changelog"
+publishing {
+	publications {
+		maven(MavenPublication) {
+			from components.java
+			pom.withXml {
+				asNode().children().last() + {
+					resolveStrategy = Closure.DELEGATE_FIRST
+					name rootProject.name
+					description 'Simple client to Changelog (https://github.com/prezi/changelog) servers'
+					url "http://github.com/prezi/changelog-client-java"
+					scm {
+						url "scm:git:git@github.com:prezi/changelog-client-java"
+						connection "scm:git:git@github.com:prezi/changelog-client-java"
+						developerConnection "scm:git:git@github.com:prezi/changelog-client-java"
+					}
+					licenses {
+						license {
+							name 'WTFPL - Do What The Fuck You Want To Public License'
+							url 'http://www.wtfpl.net/'
+							distribution 'repo'
+						}
+					}
+					developers {
+						developer {
+							id 'abesto'
+							name 'Zoltan Nagy'
+							email 'zoltan.nagy@prezi.com'
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+//uploadArchives {
+//	repositories {
+//		mavenDeployer {
+//			pom.project {
+//				licenses {
+//					license {
+//						name 'WTFPL - Do What The Fuck You Want To Public License'
+//						url 'http://www.wtfpl.net/'
+//						distribution 'repo'
+//					}
+//				}
+//			}
+//		}
+//	}
+//}
