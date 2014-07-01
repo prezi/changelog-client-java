@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ChangelogAuthHttpBasic implements ChangelogAuthProvider {
-    public static final String USERNAME_PROPERTY = "com.prezi.changelog.auth.httpBasic.username";
-    public static final String PASSWORD_PROPERTY = "com.prezi.changelog.auth.httpBasic.password";
+    public static final String USERNAME_PROPERTY = "changelog.auth.httpBasic.username";
+    public static final String PASSWORD_PROPERTY = "changelog.auth.httpBasic.password";
 
     protected Logger logger;
 

@@ -1,10 +1,10 @@
 package com.prezi.changelog;
 
 public class DefaultChangelogClientConfig implements ChangelogClientConfig {
-    public static final String ENDPOINT_PROPERTY = "com.prezi.changelog.endpoint";
-    public static final String CRITICALITY_PROPERTY = "com.prezi.changelog.criticality";
-    public static final String CATEGORY_PROPERTY = "com.prezi.changelog.category";
-    public static final String AUTH_PROVIDER_TYPE_PROPERTY = "com.prezi.changelog.auth.providerType";
+    public static final String ENDPOINT_PROPERTY = "changelog.endpoint";
+    public static final String CRITICALITY_PROPERTY = "changelog.criticality";
+    public static final String CATEGORY_PROPERTY = "changelog.category";
+    public static final String AUTH_PROVIDER_TYPE_PROPERTY = "changelog.auth.providerType";
 
     public String defaultCriticality() { return "1"; }
     public String defaultCategory() { return "misc"; }

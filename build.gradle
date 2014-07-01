@@ -49,20 +49,3 @@ publishing {
 		}
 	}
 }
-
-
-//uploadArchives {
-//	repositories {
-//		mavenDeployer {
-//			pom.project {
-//				licenses {
-//					license {
-//						name 'WTFPL - Do What The Fuck You Want To Public License'
-//						url 'http://www.wtfpl.net/'
-//						distribution 'repo'
-//					}
-//				}
-//			}
-//		}
-//	}
-//}

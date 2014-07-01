@@ -23,7 +23,7 @@ public class ChangelogClient {
         this.authProvider = new ChangelogAuthProviderFactory().build(config);
         this.logger = LoggerFactory.getLogger(this.getClass());
         if (config.getEndpoint() == null) {
-            throw new RuntimeException("com.prezi.changelog endpoint not set");
+            throw new RuntimeException("changelog endpoint not set");
         }
     }
 
