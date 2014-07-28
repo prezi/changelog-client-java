@@ -19,8 +19,12 @@ public class ChangelogClient {
     protected Logger logger;
 
     public ChangelogClient(ChangelogClientConfig config) {
+        this(config, new ChangelogAuthProviderFactory().build(config));
+    }
+
+    public ChangelogClient(ChangelogClientConfig config, ChangelogAuthProvider authProvider) {
         this.config = config;
-        this.authProvider = new ChangelogAuthProviderFactory().build(config);
+        this.authProvider = authProvider;
         this.logger = LoggerFactory.getLogger(this.getClass());
         if (config.getEndpoint() == null) {
             throw new RuntimeException("changelog endpoint not set");

@@ -1,8 +1,13 @@
 apply plugin: 'java'
 
 version = '0.0.1'
+project.group = "com.prezi.changelog"
+description = "JVM client for a Changelog (https://github.com/prezi/changelog) server"
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
 
 repositories {
+	mavenLocal()
     mavenCentral()
 }
 
@@ -13,39 +18,74 @@ dependencies {
 			'commons-codec:commons-codec:1.4'  // For HTTP Basic auth
 }
 
-apply plugin: 'maven-publish'
-project.group = "com.prezi.changelog"
-publishing {
-	publications {
-		maven(MavenPublication) {
-			from components.java
-			pom.withXml {
-				asNode().children().last() + {
-					resolveStrategy = Closure.DELEGATE_FIRST
-					name rootProject.name
-					description 'Simple client to Changelog (https://github.com/prezi/changelog) servers'
-					url "http://github.com/prezi/changelog-client-java"
-					scm {
-						url "scm:git:git@github.com:prezi/changelog-client-java"
-						connection "scm:git:git@github.com:prezi/changelog-client-java"
-						developerConnection "scm:git:git@github.com:prezi/changelog-client-java"
+apply plugin: "signing"
+signing {
+	sign configurations.archives
+}
+
+apply plugin: 'maven'
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+			pom.project {
+				name = rootProject.name
+				description = rootProject.description
+				url "http://github.com/prezi/changelog-client-java"
+				scm {
+					url "scm:git:https://github.com/prezi/changelog-client-java"
+					connection "scm:git:git@github.com:prezi/changelog-client-java"
+					developerConnection "scm:git:git@github.com:prezi/changelog-client-java"
+				}
+				licenses {
+					license {
+						name 'WTFPL - Do What The Fuck You Want To Public License'
+						url 'http://www.wtfpl.net/'
+						distribution 'repo'
 					}
-					licenses {
-						license {
-							name 'WTFPL - Do What The Fuck You Want To Public License'
-							url 'http://www.wtfpl.net/'
-							distribution 'repo'
-						}
+				}
+				developers {
+					developer {
+						id 'abesto'
+						name 'Zoltan Nagy'
+						email 'zoltan.nagy@prezi.com'
 					}
-					developers {
-						developer {
-							id 'abesto'
-							name 'Zoltan Nagy'
-							email 'zoltan.nagy@prezi.com'
-						}
-					}
+				}
+			}
+			if (rootProject.hasProperty("sonatypeUsername")) {
+				repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+					def user = rootProject.getProperty("sonatypeUsername")
+					def password = rootProject.getProperty("sonatypePassword")
+					authentication(userName: user, password: password)
+				}
+				snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+					def user = rootProject.getProperty("sonatypeUsername")
+					def password = rootProject.getProperty("sonatypePassword")
+					authentication(userName: user, password: password)
 				}
 			}
 		}
 	}
+}
+
+task javadocJar(type: Jar) {
+	dependsOn javadoc
+	classifier = "javadoc"
+	from "build/docs/javadoc"
+}
+
+task sourcesJar(type: Jar) {
+	from sourceSets.main.allSource
+	classifier = "sources"
+}
+
+jar {
+	from rootProject.file("LICENSE.txt")
+	from rootProject.file("README.md")
+}
+
+artifacts {
+	archives jar
+	archives javadocJar
+	archives sourcesJar
 }
