@@ -6,7 +6,7 @@ A simple JVM client for a [Changelog](https://github.com/prezi/changelog) server
 
 TODO: how to add as dependency, once uploaded to Sonatype.
 
-```
+```Java
 import com.prezi.changelog.ChangelogClient;
 import java.io.IOException;
 
