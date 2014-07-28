@@ -18,9 +18,11 @@ dependencies {
 			'commons-codec:commons-codec:1.4'  // For HTTP Basic auth
 }
 
-apply plugin: "signing"
-signing {
-	sign configurations.archives
+if (hasProperty("signing.keyId")) {
+	apply plugin: "signing"
+	signing {
+		sign configurations.archives
+	}
 }
 
 apply plugin: 'maven'
