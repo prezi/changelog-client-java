@@ -2,6 +2,8 @@
 
 A simple JVM client for a [Changelog](https://github.com/prezi/changelog) server. 
 
+[![Build Status](https://travis-ci.org/prezi/changelog-client-java.svg?branch=master)](https://travis-ci.org/prezi/changelog-client-java)
+
 ## Usage
 
 TODO: how to add as dependency, once uploaded to Sonatype.
