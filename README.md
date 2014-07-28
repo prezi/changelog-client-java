@@ -1,6 +1,6 @@
 # changelog-client-java
 
-A simple JVM client for a [Changelog](https://github.com/prezi/changelog) server.
+A simple JVM client for a [Changelog](https://github.com/prezi/changelog) server. 
 
 ## Usage
 
