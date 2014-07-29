@@ -4,9 +4,23 @@ A simple JVM client for a [Changelog](https://github.com/prezi/changelog) server
 
 [![Build Status](https://travis-ci.org/prezi/changelog-client-java.svg?branch=master)](https://travis-ci.org/prezi/changelog-client-java)
 
-## Usage
+## Installation
 
-TODO: how to add as dependency, once uploaded to Sonatype.
+_changelog-client-java_ is available from Maven Central; the latest version is `0.0.1`.
+
+GroupId|ArtifactId|Version
+--------------------------
+com.prezi.changelog|changelog-client-java|0.0.1
+
+For example if using Gradle:
+
+```groovy
+dependencies {
+	compile 'com.prezi.changelog:changelog-client-java:0.0.1'
+}
+```
+
+## Usage
 
 ```Java
 import com.prezi.changelog.ChangelogClient;
