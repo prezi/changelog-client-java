@@ -9,7 +9,7 @@ A simple JVM client for a [Changelog](https://github.com/prezi/changelog) server
 _changelog-client-java_ is available from Maven Central; the latest version is `0.0.1`.
 
 GroupId|ArtifactId|Version
---------------------------
+-------|----------|-------
 com.prezi.changelog|changelog-client-java|0.0.1
 
 For example if using Gradle:
